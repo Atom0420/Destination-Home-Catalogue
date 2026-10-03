@@ -1,0 +1,10 @@
+Catalogue icon: original virtual-gallery gateway and collectible cards.
+Created with the built-in image-generation tool for this project.
+No PlayStation or Destination Home logos or branding assets were used.
+
+Final prompt:
+Use case: logo-brand. Asset type: original Windows application icon for an offline virtual-world item catalogue, needs strong legibility at 32x32 and 48x48. Create ONE centered finished square icon, not a mockup or sheet. Original concept: a chunky luminous gallery gateway, an open rounded rectangular dimensional doorway with a subtly offset stack of two collectible catalogue cards emerging from its center, suggesting virtual spaces and an inventory library. Simple three-dimensional polished geometric emblem, broad clean silhouettes, teal/cyan inner glow and soft violet outer rim, ivory highlights, on a deep charcoal rounded-square app tile with generous 10% transparent space outside the tile. Restrained premium digital look, dark surfaces, very few large elements, crisp edges and distinct contrast. Truly transparent outside the tile; entire tile fully visible with nothing cut off. This should evoke virtual-world collecting without resembling PlayStation Home or Destination Home branding. Avoid all existing logos, avoid house or roof silhouettes, avoid the PlayStation PS monogram and controller button symbols, avoid circles triangles crosses squares as a grouped branding motif, avoid text, letters, numbers, watermarks, labels, logo comparisons, or a background scene. Do not imitate either project's specific icon. Output a production-ready original icon at square high resolution.
+
+Master: catalogue-icon.png, unchanged generated transparent PNG.
+Windows icon: catalogue.ico, 16/24/32/48/64/128/256 pixel PNG-backed frames.
+To recreate the icon format, run ./Build-CatalogueIcon.ps1.

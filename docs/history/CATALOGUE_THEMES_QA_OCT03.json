@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "itemCount": 66704,
+  "uuidSearch": true,
+  "typeFilter": true,
+  "localImage": "360FA875-FDB24044-B32F97A9-28544F8A",
+  "internetRequiredForViewing": false,
+  "layoutChecks": [
+    "Midnight: 1320x820",
+    "Midnight: 1084x641",
+    "Midnight: 1600x980",
+    "Dracula: 1320x820",
+    "Dracula: 1084x641",
+    "Dracula: 1600x980",
+    "Tokyo Night: 1320x820",
+    "Tokyo Night: 1084x641",
+    "Tokyo Night: 1600x980",
+    "Nord: 1320x820",
+    "Nord: 1084x641",
+    "Nord: 1600x980",
+    "Ros\u00E9 Pine: 1320x820",
+    "Ros\u00E9 Pine: 1084x641",
+    "Ros\u00E9 Pine: 1600x980",
+    "Solarized: 1320x820",
+    "Solarized: 1084x641",
+    "Solarized: 1600x980"
+  ],
+  "themes": [
+    "Midnight",
+    "Dracula",
+    "Tokyo Night",
+    "Nord",
+    "Ros\u00E9 Pine",
+    "Solarized"
+  ],
+  "preferencesRoundTrip": true,
+  "motionToggles": true,
+  "longDetailsScrollable": true,
+  "stockDropdowns": false,
+  "scaleChecks": [
+    "125% simulated layout and text scale",
+    "150% simulated layout and text scale",
+    "200% simulated layout and text scale"
+  ],
+  "applicationIcon": true,
+  "headerArtwork": true,
+  "dropdownKeyboardAndPopup": true
+}

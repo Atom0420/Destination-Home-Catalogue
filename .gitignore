@@ -16,3 +16,6 @@ ImageArchive/
 *.tmp
 catalogue.json
 catalogue-checkpoint.json
+
+Deliverables/
+viewer-settings.json

@@ -37,7 +37,7 @@ internal static class Program
             using var form = new CatalogueViewerForm();
             form.Shown += (_, _) => form.BeginInvoke(new Action(() =>
             {
-                try { form.VerifyOffline(reportDirectory); result = 0; }
+                try { form.VerifyOffline(reportDirectory); File.Delete(Path.Combine(reportDirectory, "offline-verification-error.txt")); result = 0; }
                 catch (Exception exception) { Directory.CreateDirectory(reportDirectory); File.WriteAllText(Path.Combine(reportDirectory, "offline-verification-error.txt"), exception.ToString()); }
                 finally { form.Close(); }
             }));

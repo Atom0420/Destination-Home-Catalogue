@@ -4,14 +4,21 @@
 
 **Status:** active / experimental · **Source checkpoint:** 2026-10-03 · **Platform:** Windows x64 · **Stack:** C# / .NET 8 Windows Forms
 
-![UUID Catalogue with search, item list and local preview details](docs/images/uuid-catalogue-oct03.png)
+## Download and use
 
-The October 3 screenshot shows the current interface with a filtered item count. The accompanying [existing offline QA record](docs/history/CATALOGUE_QA_OCT03.json) reports 66,704 entries, UUID search, type filtering, a local preview and three window sizes. Repository preparation rebuilt this source; it did not repeat that data-backed UI check or perform an online sync.
+**[Download the latest Windows x64 app](https://github.com/Atom0420/Destination-Home-Catalogue/releases/latest/download/UUID-Catalogue-Windows-x64.zip)** · [Release notes and update package](https://github.com/Atom0420/Destination-Home-Catalogue/releases/latest)
+
+Extract the entire ZIP and run `UUID-Catalogue/DestinationHome.Catalogue.exe`. No source build or runtime installation is needed. The portable package includes the existing 66,704-entry metadata snapshot for offline browsing. Previews use your own `Data/ImageArchive`; the full picture collection is not bundled. [Installation and updates](docs/INSTALLATION.md) cover first use, existing data, runtime-only updates and file hashes.
+
+![UUID Catalogue with the new appearance controls and Dracula theme](docs/images/themes/catalogue-Dracula.png)
+
+The current interface includes custom themed controls and an embedded gallery icon. The preserved October 3 [theme QA record](docs/history/CATALOGUE_THEMES_QA_OCT03.json) covers 66,704 metadata entries, all six themes, three window sizes, appearance preferences, dropdown behavior and simulated display scaling. [Appearance guide and gallery](docs/APPEARANCE.md) describe the controls and show every palette. A fresh [repository QA run](docs/VALIDATION.md) also passes those checks on the independently published binary. The displayed count is a filtered view.
 
 ## Browse and inspect
 
 - Search names, UUIDs, descriptions and categories; narrow the list by item type.
-- View local thumbnails, larger previews, maker information, HDK/object/ODC versions and age metadata.
+- Choose Midnight, Dracula, Tokyo Night, Nord, Rosé Pine or Solarized through **APPEARANCE**. Switch animation and reactive interactions independently; preferences persist locally.
+- View local thumbnails, larger previews, maker information, HDK/object/ODC versions and age metadata. Long details wrap and scroll independently while **COPY UUID** stays visible.
 - Copy the complete `8-8-8-8` Home UUID from the details panel or double-click an item.
 - Browse an existing snapshot offline. Explicit updates refresh metadata; the included script also fetches the configured public image archive.
 - Resume recent interrupted downloads without replacing the previous completed snapshot until the new sync finishes.
@@ -53,7 +60,11 @@ flowchart LR
 
 | File | Purpose |
 | --- | --- |
-| `CatalogueViewerForm.cs`, `CatalogueTheme.cs` | Search/filter UI, local image handling, themed controls and offline layout verification |
+| `CatalogueViewerForm.cs`, `CatalogueTheme.cs` | Search/filter UI, local image handling, window chrome, layout and offline verification |
+| `CatalogueAppearance.cs` | Six palettes, interaction switches and local preference persistence |
+| `CatalogueInteractiveControls.cs`, `CatalogueContentControls.cs` | Custom buttons, dropdowns, toggles, scrollbars, details viewport and preview |
+| `Assets/`, `Build-CatalogueIcon.ps1` | Original icon artwork, embedded multi-size Windows icon and format generator |
+| `Package-Catalogue.ps1`, `CATALOGUE-UPDATE.txt` | Runtime-only update and optional full offline/source packaging |
 | `CatalogueModels.cs` | Snapshot, item, version, legal and classification models |
 | `CatalogueService.cs` | Paginated metadata sync, retry, resume and completed-snapshot replacement |
 | `Program.cs` | Desktop entry point, sync-only and offline verification modes |
@@ -64,4 +75,4 @@ flowchart LR
 
 Release build and self-contained publish pass with zero warnings or errors. Current external service availability and full downloads remain separate checks. No catalogue database, downloaded image collection, personal settings or release binaries are committed.
 
-Next work is to validate the current service contract, add authored pagination/checkpoint fixtures and repeat the offline layout checks with representative local data after UI changes. Source and third-party content rights are described in [LICENSE-NOTICE.md](LICENSE-NOTICE.md).
+The offline verification mode now exercises appearance controls, all six palettes, dropdown keyboard/popup handling, long-detail reachability and simulated 125%/150%/200% layout/text scaling. Physical multi-monitor behavior and live metadata sync remain separate checks. Next work is to validate the service contract and add authored pagination/checkpoint fixtures. Source and third-party content rights are described in [LICENSE-NOTICE.md](LICENSE-NOTICE.md).

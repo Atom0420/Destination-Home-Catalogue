@@ -18,6 +18,18 @@ Items are collected in a case-insensitive UUID dictionary. A page indicating mor
 
 `Update-OfflineCatalogue.ps1` publishes a self-contained Windows x64 build, obtains the public ImageArchive through Git and then invokes the published sync-only executable. Existing Git image checkouts use `pull --ff-only`; an existing non-Git image directory causes a stop. Image downloads and metadata sync are separate operations and do not imply that every entry has a public preview.
 
+## Appearance, controls and resources
+
+`CatalogueAppearance` owns one of six immutable palettes plus separate Animated/Reactive flags and a change event. `CataloguePreferences` loads the local JSON settings with fallback defaults and saves through a temporary file. The form applies palette changes across window chrome, grid and custom controls; save failures are reported without reverting the visible selection.
+
+`CatalogueInteractiveControls` implements painted buttons, choice popups, toggles and scrollbar interaction. `CatalogueContentControls` routes grid/detail wheel scrolling through those scrollbars and renders the complete local image without hover cropping. The details viewport intentionally allows scrolling content beyond its bounds; other controls are checked for clipping. Interaction timers stop when transitions finish or appearance changes.
+
+The project embeds icon/artwork with `DestinationHome.Catalogue.CatalogueIcon` and `DestinationHome.Catalogue.CatalogueArtwork` logical resource names. Form initialization reads those exact resources. The namespace adaptation must keep all three resource references synchronized. PerMonitorV2 and DPI-based detail measurements are part of the layout contract.
+
+## Packaging boundaries
+
+The packaging script uses the repository root, emits standalone executable/archive names and excludes local Data from runtime-only updates. Source packaging excludes `.git`, IDE/build state, Deliverables, downloaded data and logs. Full offline packaging is explicit local distribution work; it includes your snapshot and PNG previews and is not committed.
+
 ## Offline verification
 
-`--verify-offline` uses the form against an existing local snapshot, exercises an illustrated UUID, checks the clothing type filter and records three window sizes. The preserved October 3 report is prior local UI evidence. A clean compilation does not replace that check or prove service availability.
+`--verify-offline` checks an illustrated UUID, the clothing filter, six palettes at three window sizes, appearance switches, settings round-trip, popup/keyboard selection, long-detail reachability and simulated 125%/150%/200% layout/text scaling. It verifies embedded icon/artwork and writes a report plus rendered screenshots. Preference fixtures are saved in the report directory; appearance control exercises suppress saving the user's preferences. A clean compilation does not replace these checks or establish physical multi-monitor behavior or service availability.

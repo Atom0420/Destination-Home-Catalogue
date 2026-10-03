@@ -1,0 +1,18 @@
+UUID Catalogue - appearance update
+
+Close the catalogue viewer before updating.
+Extract this update into the folder that already contains DestinationHome.Catalogue.exe.
+Allow Windows to replace the application/supporting files.
+Keep your existing Data folder: this update does not include or overwrite it.
+Run DestinationHome.Catalogue.exe afterwards.
+
+APPEARANCE (top-right) opens the theme and interaction settings.
+Themes: Midnight, Dracula, Tokyo Night, Nord, Rose Pine, Solarized.
+Animation and reactive effects can be enabled or disabled independently.
+Settings save locally in Data/viewer-settings.json.
+
+This updates the catalogue viewer only. Catalogue metadata, downloaded item images, and appearance preferences are unchanged.
+The original catalogue gateway icon is embedded in the application.
+
+This application is unsigned. Treat security warnings carefully and verify the
+source/hash before running; do not disable your antivirus to use it.

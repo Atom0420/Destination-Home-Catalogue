@@ -8,13 +8,13 @@ internal static class CatalogueChrome
     [DllImport("dwmapi.dll")]
     private static extern int DwmSetWindowAttribute(IntPtr window, int attribute, ref int value, int size);
 
-    internal static void Apply(IntPtr window)
+    internal static void Apply(IntPtr window, CataloguePalette palette)
     {
         int enabled = 1;
         DwmSetWindowAttribute(window, 20, ref enabled, sizeof(int));
-        int caption = ColorTranslator.ToWin32(Color.FromArgb(10, 17, 23));
-        int border = ColorTranslator.ToWin32(Color.FromArgb(34, 51, 62));
-        int text = ColorTranslator.ToWin32(Color.FromArgb(226, 238, 243));
+        int caption = ColorTranslator.ToWin32(palette.Background);
+        int border = ColorTranslator.ToWin32(palette.Border);
+        int text = ColorTranslator.ToWin32(palette.Text);
         DwmSetWindowAttribute(window, 35, ref caption, sizeof(int));
         DwmSetWindowAttribute(window, 34, ref border, sizeof(int));
         DwmSetWindowAttribute(window, 36, ref text, sizeof(int));
@@ -35,15 +35,21 @@ internal static class CatalogueChrome
 
 internal sealed class CatalogueCard : TableLayoutPanel
 {
+    private readonly CatalogueAppearance appearance;
+    private bool hovered;
     internal Color BorderColor { get; set; } = Color.FromArgb(31, 46, 57);
 
-    internal CatalogueCard()
+    internal CatalogueCard(CatalogueAppearance appearance)
     {
+        this.appearance = appearance;
         DoubleBuffered = true;
         SetStyle(ControlStyles.ResizeRedraw, true);
         Margin = Padding.Empty;
         BackColor = Color.FromArgb(14, 23, 29);
     }
+
+    protected override void OnMouseEnter(EventArgs e) { base.OnMouseEnter(e); hovered = true; Invalidate(); }
+    protected override void OnMouseLeave(EventArgs e) { base.OnMouseLeave(e); hovered = false; Invalidate(); }
 
     protected override void OnPaint(PaintEventArgs e)
     {
@@ -51,7 +57,7 @@ internal sealed class CatalogueCard : TableLayoutPanel
         if (Width < 4 || Height < 4) return;
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         using var path = CatalogueChrome.Rounded(new RectangleF(0.5F, 0.5F, Width - 1F, Height - 1F), 10F);
-        using var border = new Pen(BorderColor);
+        using var border = new Pen(hovered && appearance.Reactive ? appearance.Palette.Accent : BorderColor);
         e.Graphics.DrawPath(border, path);
     }
 }
@@ -59,10 +65,12 @@ internal sealed class CatalogueCard : TableLayoutPanel
 internal sealed class CatalogueField : Panel
 {
     private readonly Control input;
+    private readonly CatalogueAppearance appearance;
 
-    internal CatalogueField(Control input)
+    internal CatalogueField(Control input, CatalogueAppearance appearance)
     {
         this.input = input;
+        this.appearance = appearance;
         DoubleBuffered = true;
         SetStyle(ControlStyles.ResizeRedraw, true);
         BackColor = Color.FromArgb(18, 30, 38);
@@ -89,7 +97,7 @@ internal sealed class CatalogueField : Panel
         if (Width < 4 || Height < 4) return;
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         using var path = CatalogueChrome.Rounded(new RectangleF(0.5F, 0.5F, Width - 1F, Height - 1F), 6F);
-        using var border = new Pen(input.Focused ? Color.FromArgb(22, 207, 244) : Color.FromArgb(44, 64, 76));
+        using var border = new Pen(input.Focused ? appearance.Palette.Accent : appearance.Palette.Border);
         e.Graphics.DrawPath(border, path);
     }
 }
