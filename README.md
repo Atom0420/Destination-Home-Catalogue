@@ -59,9 +59,3 @@ flowchart LR
 | `Program.cs` | Desktop entry point, sync-only and offline verification modes |
 | `Update-OfflineCatalogue.ps1` | Self-contained publish, public image checkout and metadata refresh |
 | `docs/` | [Storage/sync contracts](docs/ENGINEERING.md), [limitations](docs/KNOWN_ISSUES.md), [validation](docs/VALIDATION.md) and preserved UI evidence |
-
-## Development status
-
-Release build and self-contained publish pass with zero warnings or errors. Current external service availability and full downloads remain separate checks. No catalogue database, downloaded image collection, personal settings or release binaries are committed.
-
-Next work is to validate the current service contract, add authored pagination/checkpoint fixtures and repeat the offline layout checks with representative local data after UI changes. Source and third-party content rights are described in [LICENSE-NOTICE.md](LICENSE-NOTICE.md).
